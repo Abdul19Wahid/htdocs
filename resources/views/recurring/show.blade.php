@@ -1,0 +1,1 @@
+<x-app-layout><div class="card p-4"><h1>{{$item->description?:'Recurring transaction'}}</h1><p>{{auth()->user()->currency}} {{number_format($item->amount,2)}} · {{$item->frequency}}</p><a href="{{route('recurring-transactions.index')}}" class="btn btn-light">Back</a></div></x-app-layout>

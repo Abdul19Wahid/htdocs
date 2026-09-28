@@ -1,0 +1,1 @@
+<x-app-layout><div class="card p-4"><h1>{{$goal->name}}</h1><p>{{auth()->user()->currency}} {{number_format($goal->current_amount,2)}} / {{number_format($goal->target_amount,2)}}</p><a href="{{route('savings-goals.index')}}" class="btn btn-light">Back</a></div></x-app-layout>

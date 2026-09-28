@@ -1,0 +1,1 @@
+<x-app-layout><h1 class="page-title mb-4">Edit Category</h1><div class="card p-4" style="max-width:850px"><form method="POST" action="{{route('categories.update',$category)}}">@method('PUT')@include('categories._form')</form></div></x-app-layout>

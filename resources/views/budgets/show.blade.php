@@ -1,0 +1,1 @@
+<x-app-layout><div class="card p-4"><h1>{{$budget->name}}</h1><p>Spent: {{auth()->user()->currency}} {{number_format($spent,2)}} / {{number_format($budget->amount,2)}}</p><a href="{{route('budgets.index')}}" class="btn btn-light">Back</a></div></x-app-layout>

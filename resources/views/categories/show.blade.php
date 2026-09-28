@@ -1,0 +1,1 @@
+<x-app-layout><div class="card p-4"><h1 class="page-title">{{$category->name}}</h1><p class="text-muted">{{$category->description?:'No description.'}}</p><a href="{{route('categories.index')}}" class="btn btn-light">Back</a></div></x-app-layout>

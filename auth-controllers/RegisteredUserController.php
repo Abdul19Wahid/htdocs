@@ -1,0 +1,7 @@
+<?php
+namespace App\Http\Controllers\Auth;
+use App\Http\Controllers\Controller; use App\Models\Category; use App\Models\IncomeSource; use App\Models\PaymentMethod; use App\Models\User; use Illuminate\Auth\Events\Registered; use Illuminate\Http\RedirectResponse; use Illuminate\Http\Request; use Illuminate\Support\Facades\Auth; use Illuminate\Support\Facades\Hash; use Illuminate\Validation\Rules; use Illuminate\View\View;
+class RegisteredUserController extends Controller {
+ public function create():View{return view('auth.register');}
+ public function store(Request $request):RedirectResponse{$request->validate(['name'=>['required','string','max:255'],'email'=>['required','string','lowercase','email','max:255','unique:'.User::class],'password'=>['required','confirmed',Rules\Password::defaults()]]);$user=User::create(['name'=>$request->name,'email'=>$request->email,'password'=>Hash::make($request->password)]);foreach(['Food & Dining','Transport','Housing','Bills & Utilities','Shopping','Health','Education','Entertainment','Other'] as $name)Category::create(['user_id'=>$user->id,'name'=>$name]);foreach(['Salary','Business','Freelance','Investment','Gift','Other'] as $name)IncomeSource::create(['user_id'=>$user->id,'name'=>$name]);foreach(['Cash','Mobile Money','Bank Transfer','Card'] as $name)PaymentMethod::create(['user_id'=>$user->id,'name'=>$name]);event(new Registered($user));Auth::login($user);return redirect(route('dashboard',absolute:false));}
+}
